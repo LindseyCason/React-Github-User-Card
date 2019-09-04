@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import styled from "styled-components"
 import './App.css';
 import Card from "./Components/Card"
 import axios from "axios";
+import { H1, H2, Img, Button, AppHeader, CardFooter, PageDiv, CardLindsey }  from "./Components/Styles"
 
 
 class App extends Component {
@@ -26,7 +28,7 @@ class App extends Component {
           location: res.data.location,
           following: res.data.following,
           image: res.data.avatar_url});
-        console.log(this.state.image)
+        // console.log(this.state.image)
     })
     .catch(err => {
         console.log(err);
@@ -36,14 +38,23 @@ class App extends Component {
 
   render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to the page of {this.state.name}</h1>
-        <img src={this.state.image} alt="Profile Picture of User" />
-        <h2>Location: {this.state.location}</h2>
-        <h3>Follwing: {this.state.following}</h3>
-      </header>
-    
+    <div>
+      <AppHeader>
+        <PageDiv>
+        <CardLindsey>
+            <H2>{this.state.name}</H2>
+            <Img src={this.state.image} alt="Profile Picture of User" />
+                <CardFooter>
+                <H1>Location: {this.state.location}</H1>
+                <H1>Following: {this.state.following}</H1>
+                <H1>Followers: {this.state.followers}</H1>
+                <Button><a href ={this.state.url}>GitHub</a></Button>
+                </CardFooter>
+                
+        </CardLindsey>
+      </PageDiv>
+      </AppHeader>
+    <hr></hr>
     <section>
       <Card />
     </section>
